@@ -29,3 +29,11 @@
   margin-top: 7.5px;
   margin-left: 9.5px;
 }
+
+.playbox {
+  border: 1px solid black;
+  width: 50vw;
+  height: 50vh;
+  margin: auto;
+  margin-top: 50px;
+}

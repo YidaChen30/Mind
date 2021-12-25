@@ -1,6 +1,7 @@
 import './pagestyling.css'
 import React from 'react'
 import { Player } from '../components/Player'
+import { Sandbox} from '../components/Sandbox'
 
 export const Homepage = () => {
 
@@ -8,13 +9,10 @@ export const Homepage = () => {
     <div>
 
       <div className="header">
+        Website name
         <Player/>
       </div>
-
-      <div className="playarea">
-        <div id='box' className="moveablesquare">
-        </div>
-      </div>
+      <Sandbox/>
     </div>
   )
 }
