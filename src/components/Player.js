@@ -1,14 +1,29 @@
 import React from 'react'
 import { useState } from 'react'
 import './components.css'
+import Forestcall from '../sounds/Forestcall.mp3'
 
 export const Player = () => {
 
   const [play, setPlay] = useState(false)
+  const [audio, setAudio] = useState(new Audio(Forestcall))
+  audio.volume = 0.2
+
+  const togglePlay = () => {
+
+    setPlay(!play)
+
+    if (play) {
+      audio.pause()
+    }
+    else {
+      audio.play()
+    }
+  }
 
   return (
-    <div className="playbutton">
-      <div className="playtriangle"/>
+    <div onClick={() => {togglePlay()}} className="playbutton">
+      {play ? <div className="pause"/> : <div className="playtriangle"/>}
     </div>
   )
 }
