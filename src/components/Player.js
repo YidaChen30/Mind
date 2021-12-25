@@ -9,6 +9,11 @@ export const Player = () => {
   const [audio, setAudio] = useState(new Audio(Forestcall))
   audio.volume = 0.2
 
+  // reset the audio play button after the song has ended
+  audio.onended = function() {
+    setPlay(!play)
+  }
+
   const togglePlay = () => {
 
     setPlay(!play)
