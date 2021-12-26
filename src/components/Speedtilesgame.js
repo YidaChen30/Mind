@@ -2,36 +2,36 @@ import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import './components.css'
 
-export const Sandbox = () => {
+export const Speedtilesgame = () => {
 
-  const [x, setX] = useState(0);
+  const [x, setX] = useState(700);
   const [y, setY] = useState(0);
 
   const handleMove = useCallback((event) => {
     
     switch (event.key) {
       case 'ArrowRight':
-        if (y < 900) {
+        if (y < 500) {
           console.log("Move right")  
-          setY(y + 5);
+          setY(y + 100);
         }
         break;
       case 'ArrowUp':
         if (x > 0) {
-          setX(x - 5);
+          setX(x - 100);
           console.log("Move up")
         }
         
         break;
       case 'ArrowDown':
         if (x < 700) {
-          setX(x + 5);
+          setX(x + 100);
           console.log("Move down")
         }
         break;
       case 'ArrowLeft':
         if (y > 0) {
-          setY(y - 5);
+          setY(y - 100);
           console.log("Move left")
           break;
         }
@@ -50,22 +50,24 @@ export const Sandbox = () => {
   }, [handleMove]);
 
   return (
-    <div>
-      <h3 style={{textAlign: "center"}}>Move the block</h3>
-
-      <div className='playbox'>
-        <Movingblock x={x} y={y}/>
-      </div>
+    <div className="speedtilesarena">
+      <Movingblock x={x} y={y}/>
     </div>
   )
 }
 
-
 const Movingblock = (props) => {
   console.log("x is " + props.x)
   console.log("y is " + props.y)
+
+  
+
   return (
-    <div style={{width: '100px', height: '100px', backgroundColor: 'green',
-    marginTop: props.x + 'px', marginLeft: props.y + 'px'}}/>
+    <div>
+      <div style={{width: '100px', height: '100px', backgroundColor: 'green',
+      marginTop: props.x + 'px', marginLeft: props.y + 'px'}}>
+        
+      </div>
+    </div>
   ) 
 }

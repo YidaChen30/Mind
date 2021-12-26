@@ -32,8 +32,25 @@
 
 .playbox {
   border: 1px solid black;
-  width: 50vw;
-  height: 50vh;
+  width: 1000px;
+  height: 800px;
   margin: auto;
   margin-top: 50px;
+}
+
+.speedtilesarena {
+  border: 1px solid black;
+  width: 600px;
+  height: 800px;
+  display:grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.gridcontainer {
+  border: 1px solid black;
+  grid-column: 1 / 6;
+  width:100px;
+  height: 100px;
 }
