@@ -7,7 +7,6 @@ export const Homepage = () => {
 
   return (
     <div>
-
       <Header/>
       <Sandbox/>
     </div>

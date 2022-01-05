@@ -39,11 +39,8 @@
 }
 
 .speedtilesarena {
-  border: 1px solid black;
   width: 600px;
   height: 800px;
-  display:grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
   margin: auto;
   margin-top: 50px;
 }

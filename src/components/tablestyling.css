@@ -1,0 +1,20 @@
+.leftedge {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  width:99px;
+  height:99px;
+}
+
+.top {
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width:99px;
+  height:99px;
+}
+
+.cell {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}

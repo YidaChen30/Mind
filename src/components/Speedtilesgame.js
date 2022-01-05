@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import './components.css'
+import './tablestyling.css'
 
 export const Speedtilesgame = () => {
 
@@ -21,7 +22,6 @@ export const Speedtilesgame = () => {
           setX(x - 100);
           console.log("Move up")
         }
-        
         break;
       case 'ArrowDown':
         if (x < 700) {
@@ -49,18 +49,47 @@ export const Speedtilesgame = () => {
     };
   }, [handleMove]);
 
+  const Table = () => {
+    let table = []
+
+    for (let i = 0; i < 8; i++) {
+      let row = []
+      for (let j = 0; j < 6; j++) {
+        if (y/100 === j && i === 7) {
+          row.push(<td className='cell'><Movingblock/></td>)
+        }
+        else {
+          row.push(<td className='cell'></td>)
+        }
+        
+      }
+      table.push(<tr>{row}</tr>)
+    }
+    return (table)
+  }
+
   return (
     <div className="speedtilesarena">
-      <Movingblock x={x} y={y}/>
+      <Table/>
+      
     </div>
   )
 }
 
+const Movingblock = () => {
+
+  return (
+    <div>
+      <div style={{width: '100px', height: '100px', backgroundColor: 'green'}}>
+      </div>
+    </div>
+  )
+}
+
+/*
 const Movingblock = (props) => {
   console.log("x is " + props.x)
   console.log("y is " + props.y)
-
-  
 
   return (
     <div>
@@ -69,5 +98,6 @@ const Movingblock = (props) => {
         
       </div>
     </div>
-  ) 
+  )
 }
+*/
