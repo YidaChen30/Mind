@@ -7,6 +7,8 @@ export const Speedtilesgame = () => {
 
   const [x, setX] = useState(700);
   const [y, setY] = useState(0);
+  const [difficulty, setDifficulty] = useState("");
+  const [blockCoords, setBlockCoords] = useState([]);
 
   const handleMove = useCallback((event) => {
     
@@ -68,10 +70,35 @@ export const Speedtilesgame = () => {
     return (table)
   }
 
+  const SelectDifficulty = () => {
+    return (
+      <div className='difficultyselecttitle'>
+        What difficulty u want
+        <p onClick={() => {
+          setDifficulty("easy")
+        }} className='difficultyselectors'>
+          Easy
+        </p>
+        <p onClick={() => {
+          setDifficulty("medium")
+        }} className='difficultyselectors'>  
+          Medium
+        </p>
+        <p onClick={() => {
+          setDifficulty("hard")
+        }} className='difficultyselectors'>
+          Hard
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="speedtilesarena">
-      <Table/>
-      
+      {difficulty === "" ? 
+        <SelectDifficulty/>
+        : <Table/>
+      }
     </div>
   )
 }
