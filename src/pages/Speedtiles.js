@@ -8,7 +8,7 @@ export const Speedtiles = () => {
   return (
     <div>
       <Header/>
-      <h3 style={{textAlign: "center"}}>Avoid the incoming blocks</h3>
+      <h2 style={{textAlign: "center"}}>Avoid the incoming blocks</h2>
       <Speedtilesgame/>
     </div>
   )

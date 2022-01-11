@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import './components.css'
 import './tablestyling.css'
+import DanielScream from '../sounds/R2DC.mp3'
 
 export const Speedtilesgame = () => {
 
@@ -9,9 +10,18 @@ export const Speedtilesgame = () => {
   const [y, setY] = useState(0);
   const [difficulty, setDifficulty] = useState("");
   const [blockCoords, setBlockCoords] = useState([]);
+  const [daniel, setdaniel] = useState(new Audio(DanielScream))
 
+  /*
+  daniel.volume = 0.1;
+  window.setTimeout(() => playDaniel(), 5000)
+
+  const playDaniel = () => {
+    daniel.play()
+    window.setTimeout(() => playDaniel(), 5000)
+  }
+  */
   const handleMove = useCallback((event) => {
-    
     switch (event.key) {
       case 'ArrowRight':
         if (y < 500) {
@@ -51,31 +61,54 @@ export const Speedtilesgame = () => {
     };
   }, [handleMove]);
 
-  const Table = () => {
-    let table = []
+  const generateCoordinates = (number) => {
 
+    setBlockCoords([])
+    
+    let coordinate = []
+
+    for (let i = 0; i < number; i++) {
+      coordinate.push(Math.floor(Math.random() * 6))
+    }
+
+    console.log(coordinate)
+    setBlockCoords(coordinate)
+  }
+
+  const Table = (props) => {
+    let table = []
     for (let i = 0; i < 8; i++) {
       let row = []
       for (let j = 0; j < 6; j++) {
         if (y/100 === j && i === 7) {
-          row.push(<td className='cell'><Movingblock/></td>)
+          row.push(<td key={j} className='cell'>
+            <Movingblock/>
+            </td>)
         }
         else {
-          row.push(<td className='cell'></td>)
+          row.push(<td key={j} className='cell'></td>)
         }
         
       }
-      table.push(<tr>{row}</tr>)
+      table.push(<tr key={i}>{row}</tr>)
     }
-    return (table)
+    return (
+      <table>
+        <tbody>
+          {table}
+        </tbody>
+      </table>
+      )
   }
 
   const SelectDifficulty = () => {
+    
     return (
       <div className='difficultyselecttitle'>
-        What difficulty u want
+        <h3>What difficulty?</h3>
         <p onClick={() => {
           setDifficulty("easy")
+          generateCoordinates(6)
         }} className='difficultyselectors'>
           Easy
         </p>
@@ -97,11 +130,13 @@ export const Speedtilesgame = () => {
     <div className="speedtilesarena">
       {difficulty === "" ? 
         <SelectDifficulty/>
-        : <Table/>
+        : <Table gameDifficulty={difficulty}/>
       }
     </div>
   )
 }
+
+
 
 const Movingblock = () => {
 
@@ -113,18 +148,3 @@ const Movingblock = () => {
   )
 }
 
-/*
-const Movingblock = (props) => {
-  console.log("x is " + props.x)
-  console.log("y is " + props.y)
-
-  return (
-    <div>
-      <div style={{width: '100px', height: '100px', backgroundColor: 'green',
-      marginTop: props.x + 'px', marginLeft: props.y + 'px'}}>
-        
-      </div>
-    </div>
-  )
-}
-*/
