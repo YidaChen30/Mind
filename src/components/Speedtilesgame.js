@@ -10,6 +10,7 @@ export const Speedtilesgame = () => {
   const [y, setY] = useState(0);
   const [difficulty, setDifficulty] = useState("");
   const [blockCoords, setBlockCoords] = useState([]);
+  const [newCoordinates, setNewCoords] = useState([])
   const [daniel, setdaniel] = useState(new Audio(DanielScream))
 
   /*
@@ -21,6 +22,7 @@ export const Speedtilesgame = () => {
     window.setTimeout(() => playDaniel(), 5000)
   }
   */
+
   const handleMove = useCallback((event) => {
     switch (event.key) {
       case 'ArrowRight':
@@ -61,6 +63,13 @@ export const Speedtilesgame = () => {
     };
   }, [handleMove]);
 
+
+  useEffect(() => {
+    setTimeout(() => {
+      incrementBlocks(6)
+    }, 3000)
+  }, [blockCoords, newCoordinates])
+
   const generateCoordinates = (number) => {
 
     setBlockCoords([])
@@ -75,18 +84,76 @@ export const Speedtilesgame = () => {
     setBlockCoords(coordinate)
   }
 
-  const Table = (props) => {
+  const incrementBlocks = (number) => {
+    
+    let updatedCoordinates = []
+
+    console.log(newCoordinates[0])
+    // if blocks have not been spawned in yet then do that
+    if (newCoordinates.length === 0) {
+      console.log(typeof(newCoordinates[0]))
+      for (let i = 0; i < number; i++) {
+        let yCoordinate = 0;
+        for (let j = 0; j < i; j++) {
+          if (blockCoords[j] === blockCoords[i]) {
+            yCoordinate--;
+          }
+          
+        }
+        updatedCoordinates.push([blockCoords[i],yCoordinate])
+      }
+    }
+    else {
+      for (let i = 0; i < newCoordinates.length; i++) {
+        updatedCoordinates[i] = [i, newCoordinates[i][1] + 1];
+      }
+    }
+
+    setNewCoords(updatedCoordinates)
+    console.log(updatedCoordinates)
+  }
+
+  const Table = () => {
     let table = []
+    let currCoords = []
+    let m = 0;
+    for (let a = 0; a < newCoordinates.length; a++) {
+      console.log(newCoordinates[a])
+      if (newCoordinates[a][1] >= 0) {
+        currCoords.push(newCoordinates[a])
+      }
+    }
+
     for (let i = 0; i < 8; i++) {
       let row = []
       for (let j = 0; j < 6; j++) {
-        if (y/100 === j && i === 7) {
-          row.push(<td key={j} className='cell'>
+        if (i === 7) {
+          if (y/100 === j ) {
+            row.push(<td key={j} className='cell'>
             <Movingblock/>
             </td>)
+          }
+          else {
+            row.push(<td key={j} className='cell'></td>)
+          }
+         
         }
         else {
-          row.push(<td key={j} className='cell'></td>)
+          let blockflag = false
+          m++
+          console.log(m)
+          for (let x = 0; x < currCoords.length; x++) {
+            console.log(currCoords[x][1]);
+            if (currCoords[x][1] > -1 && currCoords[x][0] === j && currCoords[x][1] === i) {
+              row.push(<td key={j} className='blockcell'></td>)
+              blockflag = true;
+              currCoords.splice(x,1)
+            }
+          }
+          
+          if (blockflag === false) {
+            row.push(<td key={j} className='cell'></td>)
+          }
         }
         
       }
@@ -130,7 +197,7 @@ export const Speedtilesgame = () => {
     <div className="speedtilesarena">
       {difficulty === "" ? 
         <SelectDifficulty/>
-        : <Table gameDifficulty={difficulty}/>
+        : <Table/>
       }
     </div>
   )

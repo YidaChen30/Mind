@@ -18,3 +18,10 @@
   width: 100px;
   height: 100px;
 }
+
+.blockcell {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  background-color: black;
+}
