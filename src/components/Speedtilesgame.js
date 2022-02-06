@@ -71,12 +71,13 @@ export const Speedtilesgame = () => {
   }, [blockCoords, newCoordinates])
 
   const generateCoordinates = (number) => {
-
-    setBlockCoords([])
     
+    setBlockCoords([])
     let coordinate = []
 
     for (let i = 0; i < number; i++) {
+      let newNum = Math.floor(Math.random() * 6)
+
       coordinate.push(Math.floor(Math.random() * 6))
     }
 
@@ -88,10 +89,9 @@ export const Speedtilesgame = () => {
     
     let updatedCoordinates = []
 
-    console.log(newCoordinates[0])
     // if blocks have not been spawned in yet then do that
     if (newCoordinates.length === 0) {
-      console.log(typeof(newCoordinates[0]))
+      console.log('spawn in blocks')
       for (let i = 0; i < number; i++) {
         let yCoordinate = 0;
         for (let j = 0; j < i; j++) {
@@ -104,7 +104,11 @@ export const Speedtilesgame = () => {
       }
     }
     else {
+      console.log('push down blocks')
       for (let i = 0; i < newCoordinates.length; i++) {
+        if (newCoordinates[i][1] > 7) {
+
+        }
         updatedCoordinates[i] = [i, newCoordinates[i][1] + 1];
       }
     }
@@ -118,7 +122,6 @@ export const Speedtilesgame = () => {
     let currCoords = []
     let m = 0;
     for (let a = 0; a < newCoordinates.length; a++) {
-      console.log(newCoordinates[a])
       if (newCoordinates[a][1] >= 0) {
         currCoords.push(newCoordinates[a])
       }
@@ -140,10 +143,7 @@ export const Speedtilesgame = () => {
         }
         else {
           let blockflag = false
-          m++
-          console.log(m)
           for (let x = 0; x < currCoords.length; x++) {
-            console.log(currCoords[x][1]);
             if (currCoords[x][1] > -1 && currCoords[x][0] === j && currCoords[x][1] === i) {
               row.push(<td key={j} className='blockcell'></td>)
               blockflag = true;
