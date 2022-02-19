@@ -1,8 +1,7 @@
-
 const knex = require('knex') ({
   client: 'sqlite3',
   connection: {
-    filename: './posts.db'
+    filename: './database/posts.db'
   },
   useNullAsDefault: true
 })
@@ -15,11 +14,11 @@ knex.schema
       console.log("Creating the posts table")
       return (
         knex.schema.createTable('posts', (table) => {
-          table.string('id').primary;
+          table.increments('id').primary;
           table.string('title');
           table.string('timedate');
           table.string('subject');
-          table.string('content');
+          table.text('content');
         })
         .then(() => {
           console.log('Posts table created')
