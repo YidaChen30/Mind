@@ -9,11 +9,13 @@ export const Header = () => {
   const history = useNavigate();
 
   return (
-    <div className="header">
-      <img src={chen} onClick={() => {
-        history("/")
-      }} style={{cursor: "pointer", border: "1px solid black"}}/>
-      <Player/>
+    <div className='headerdiv'>
+      <div className="header">
+        <img src={chen} onClick={() => {
+          history("/")
+        }} style={{cursor: "pointer", border: "1px solid black"}}/>
+        <Player/>
+      </div>
     </div>
   )
 }

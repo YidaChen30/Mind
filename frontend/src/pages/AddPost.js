@@ -15,6 +15,21 @@ export const AddPost = () => {
       .then(res => console.log(res))
   }
 
+  const SendPost = async () => {
+    await fetch('http://localhost:6161/addpost', {
+      method: 'Post',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        'title': title,
+        'content': content,
+        'name': name
+      })
+    }).then(res => res.text())
+    .then(res => console.log(res))
+  }
+
   return(
   <div>
 
@@ -44,7 +59,7 @@ export const AddPost = () => {
           <br/>
 
           <button style={{marginRight: "-6px", float: "right"}} onClick={() => {
-            PingBackend()
+            SendPost()
           }}>submit</button>
 
         </div>

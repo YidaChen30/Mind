@@ -7,8 +7,8 @@ export const Homepage = () => {
   return (
     <div>
       <Header/>
-      <div>
-        Hi this is my website
+      <div className='pagediv'>
+        <h1 style={{marginTop:'-10px'}}>anyonghaseyo</h1>
       </div>
     </div>
   )

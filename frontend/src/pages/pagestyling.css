@@ -1,11 +1,23 @@
 
+.headerdiv {
+  background-color: #f7f7f5;
+  border-bottom: solid #e0e0e0 1px;
+}
+
 .header {
+  
   height:5vh;
   width:975px;
   display:flex;
   justify-content: space-between;
   margin-left:auto;
   margin-right: auto;
+}
+
+.pagediv {
+  width: 975px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .playarea {
