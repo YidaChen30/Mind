@@ -1,0 +1,30 @@
+.avatardiv {
+    width: 64px;
+    height: 64px;
+
+  }
+
+  .topRight {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .topLeft {
+    width: 32px;
+    height: 32px;
+    flex-wrap: wrap;
+  }
+
+  .bottomRight {
+    width: 32px;
+    height: 32px;
+    flex-wrap: wrap;
+  }
+
+  .bottomLeft {
+    width: 32px;
+    height: 32px;
+    flex-wrap: wrap;
+  }

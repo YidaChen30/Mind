@@ -75,7 +75,7 @@ const AimArea = () => {
 
   hitsound.volume = 0.2
   const generateTarget = () => {
-    let newCoordinate = [Math.floor(Math.random() * 90), Math.floor(Math.random() * 90)]
+    let newCoordinate = [Math.floor(Math.random() * 90), Math.floor(Math.random() * 85)]
 
     setTargetCoordinate(newCoordinate)
   }
