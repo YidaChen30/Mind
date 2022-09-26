@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import './components.css'
 import Forestcall from '../sounds/Forestcall.mp3'
+import { Box } from '@mui/material'
+import { Stack } from '@mui/system'
 
 export const Player = () => {
 
@@ -13,7 +15,7 @@ export const Player = () => {
   audio.onended = function() {
     setPlay(!play)
   }
-
+  
   const togglePlay = () => {
 
     setPlay(!play)
@@ -27,8 +29,24 @@ export const Player = () => {
   }
 
   return (
-    <div onClick={() => {togglePlay()}} className="playbutton">
-      {play ? <div className="pause"/> : <div className="playtriangle"/>}
-    </div>
+    <Stack spacing={1} justifyContent={'center'}>
+      <div onClick={() => {togglePlay()}} className="playbutton">
+        {play ? <div className="pause"/> : <div className="playtriangle"/>}
+      </div>
+      <Box sx={{
+        height: '3px',
+        backgroundColor: 'gray',
+        width: '100px',
+        borderRadius: '1px'
+      }}>
+        <Box sx={{
+          width: ((audio.currentTime / audio.duration) * 100) + '%',
+          backgroundColor: 'orange',
+          height: '100%'
+        }}>
+
+        </Box>
+      </Box>
+    </Stack>
   )
 }

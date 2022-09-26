@@ -26,23 +26,23 @@ const Timer = () => {
     const timerInterval = setInterval(() => {
       const currSecond = second + 1;
 
-      if (currSecond > 60) {
+      if (currSecond > 59) {
         setSecond(0)
         setDisplaySecond("00")
         setMinute((minute) => minute + 1)
-
-        if (minute++ < 10) {
-          setDisplayMinute("0" + minute++)
+        console.log(minute + 1)
+        if (minute < 9) {
+          setDisplayMinute("0" + (minute + 1).toString())
         }
         else {
-          setDisplayMinute(minute++)
+          setDisplayMinute(minute + 1)
         }
 
       }
       else {
         setSecond(currSecond)
 
-        if (currSecond < 10) {
+        if (currSecond <= 9) {
           setDisplaySecond("0" + currSecond)
         }
         else {
@@ -50,10 +50,7 @@ const Timer = () => {
         }
 
       }
-      
-      console.log(second)
-  
-    }, 1000)
+    }, 10)
 
     return () => {
       clearInterval(timerInterval)
@@ -75,7 +72,7 @@ const AimArea = () => {
 
   hitsound.volume = 0.2
   const generateTarget = () => {
-    let newCoordinate = [Math.floor(Math.random() * 90), Math.floor(Math.random() * 90)]
+    let newCoordinate = [Math.floor(Math.random() * 85), Math.floor(Math.random() * 85)]
 
     setTargetCoordinate(newCoordinate)
   }
