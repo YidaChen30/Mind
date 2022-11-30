@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Player } from './Player'
 import chen from '../pics/chen.png'
 import { useNavigate } from 'react-router-dom'
-import { IconButton, Stack, Menu, Box, MenuItem } from '@mui/material'
+import { IconButton, Stack, Menu, Box, MenuItem, Grid } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 
 export const Header = () => {
@@ -16,17 +16,26 @@ export const Header = () => {
     {
       text: 'Aim Trainer',
       path: 'aimtrainer'
+    },
+    {
+      text: 'Add Post',
+      path: 'addpost'
     }
   ]
 
   return (
-    <div className='headerdiv'>
-      <div className="header">
+    <Grid container justifyContent={'center'} sx={{ backgroundColor: '#f2d5ab'}}>
+      <Grid item xs={6} sx={{
+        display: 'flex',
+        height: '5vh', 
+        justifyContent: 'space-between', 
+        borderBottom: 'solid #e0e0e0 1px'
+        }} >
         <Stack direction={'row'} alignItems={'center'} spacing={1}>
 
           <img src={chen} onClick={() => {
             history("/")
-          }} style={{cursor: "pointer", border: "1px solid black", height: '90%'}}/>
+          }} style={{cursor: "pointer", border: "1px solid black", height: '5vh'}}/>
 
           <Box>
             <IconButton
@@ -68,9 +77,9 @@ export const Header = () => {
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-              {menuItems.map((entry) => {
+              {menuItems.map((entry, i) => {
                 return (
-                  <MenuItem onClick={() => history('/' + entry.path)}>
+                  <MenuItem key={i} onClick={() => history('/' + entry.path)}>
                     {entry.text}
                   </MenuItem>
                 )
@@ -79,7 +88,7 @@ export const Header = () => {
           </Box>
         </Stack>
         <Player/>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   )
 }

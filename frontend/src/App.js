@@ -5,12 +5,14 @@ import {Homepage} from './pages/Homepage';
 import { Speedtiles } from './pages/Speedtiles';
 import { Aimtrainer } from './pages/Aimtrainer';
 import { AddPost } from './pages/AddPost';
+import { ViewPost } from './pages/ViewPost';
 import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='post/:id' element={<ViewPost/>}/>
         <Route path='addpost' element={<AddPost/>}/>
         <Route path='Speedtiles' element={<Speedtiles/>}></Route>
         <Route path='Aimtrainer' element={<Aimtrainer/>}></Route>
